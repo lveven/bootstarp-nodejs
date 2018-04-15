@@ -1,0 +1,31 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "模仿廖学峰网站的一个nodejs的小demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node app.js"
+  },
+  "author": "lveven",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "cookies": "^0.7.1",
+    "date": "^1.0.2",
+    "express": "^4.16.2",
+    "howdo": "^3.3.0",
+    "http": "0.0.0",
+    "jquery": "^3.3.1",
+    "md5": "^2.2.1",
+    "mongoose": "^5.0.0-rc1",
+    "multer": "^0.1.6",
+    "swig": "^1.4.2",
+    "ueditor": "^1.2.3",
+    "webpack": "^4.5.0"
+  },
+  "repository": {
+    "type": "demo",
+    "url": "http://www.lveven.com"
+  }
+}

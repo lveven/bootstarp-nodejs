@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <title>后台管理</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min_1.css">
+    <link rel="stylesheet" href="/public/css/font-awesome.min_1.css">
+    <link rel="stylesheet" href="/public/css/vs.min_1.css">
+    <link rel="stylesheet" href="/public/css/screen_1.css"/> 
+    {% block head %}{% endblock %}
+</head>
+<body class="home-template">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/admin/">后台管理</a>
+        </div>
+        <div>
+            <!--向左对齐-->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="../">首页</a></li>
+                <li><a href="/admin/user">用户管理</a></li>
+                <li><a href="/admin/category">分类管理</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        文章管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/content">文章列表</a></li>
+                        <li><a href="/admin/content/add">添加文章</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="#">评论</a></li> -->
+            </ul>
+            <!--向右对齐-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{userInfo.username}}<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <!--内容-->
+    <div class="content" style="margin-bottom:100px;">
+        {% block main%}{% endblock %}
+    </div>
+    <!--版权信息-->
+    <div class="copyright" style="position:fixed;bottom:0;left:0;width:100%;z-index:999">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span>Copyright &copy; <a href="http://www.lveven.com/">lveven.com</a></span> |
+                    <span><a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备14030074号-2</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScripts -->
+    <script src="/public/js/jquery.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+
+    <link href="/public/css/ui-dialog_1.css" rel="stylesheet"/>
+    <script src="/public/js/dialog-min.js"></script>
+
+    <link href="/public/css/base_1.css" rel="stylesheet"/>
+    <script src="/public/js/base.js"></script>
+
+    <script src="/public/js/jquery.fitvids.min.js"></script>
+
+    <link rel="stylesheet" href="/public/css/monokai_1.css">
+    <script src="/public/js/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    {% block footer %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+    <!-- 导航 -->
+    <ol class="breadcrumb">
+        <li><a href="/admin/">后台管理</a></li>
+        <li class="active">修改文章——{{content.title}}</li>
+    </ol>
+    <div class="container">
+        <form role="form" method='post'>
+            <div class="form-group">
+                <label for="category">选择列表</label>
+                <select class="form-control" name="category">
+                    {% for category in category %}
+                    <option value="{{category.id}}" {% if category.id == content.category %}selected{% endif %}>{{category.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">文章标题：</label>
+                <input type="text" class="form-control" id="title" name='title' placeholder="请输入文章标题" value="{{content.title}}">
+            </div>
+            <div class="form-group">
+                <label for="description">简介：</label>
+                <textarea class="form-control" rows="3" name="description" placeholder="请输入文章简介">{{content.description}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="content">内容：</label>
+                <script id="container" name="content" type="text/plain" style="height:300px;z-index:-999;">{{content.content|raw}}</script> 
+                <!-- <textarea class="form-control" rows="10" name="content" placeholder="请输入文章内容"></textarea> -->
+            </div>
+            <button type="submit" class="btn btn-default">提交</button>
+        </form>
+    </div>
+     <!-- 配置文件 -->  
+     <script type="text/javascript" src="/public/ueditor/ueditor.config.js"></script>  
+     <!-- 编辑器源码文件 -->  
+     <script type="text/javascript" src="/public/ueditor/ueditor.all.js"></script>  
+     <!-- 实例化编辑器 -->  
+     <script type="text/javascript">  
+         var ue = UE.getEditor('container');  
+     </script>
+{% endblock %}

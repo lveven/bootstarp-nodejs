@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content="LVEVEN社区"/>
+    <meta name="description"  content="LVEVEN社区"/>
+    <title>LVEVEN社区</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/css/vs.min.css">
+    <link rel="stylesheet" href="/public/css/screen.css"/>
+</head>
+<body class="home-template">
+<style>
+    .main-title {
+        margin: .67em 0;
+        font-size: 3em;
+        color: #fff;
+        font-weight: 400;
+    }
+    .register{
+        display: none;
+    }
+    .display-info{
+        color: red;
+        font-size: 12px;
+        text-align: center
+    }
+    .widget .btn{
+        width: 100%;
+    }
+    .userInfo P{
+        text-align: center
+    }
+</style>
+<!-- start header -->
+<header class="main-header"
+        style="background-image: url(public/images/44e1c4e50d55159c65da6a41bc07e.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main-title"><span class="hide">Laravel - </span>欢迎广大朋友前来讨论</div>
+
+                <h3 class="" style="color: #fff;text-align: right">lveven.com</h3>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- end header -->
+
+<!-- start navigation -->
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header">
+                        <span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars"></i>
+                        </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <!-- 导航 -->
+                    <ul class="menu">
+                        <!-- 高亮显示 -->
+                        {% if category2==''%}
+                        <li class="nav-current"><a href="/">首页</a></li>
+                        {% else %}
+                        <li><a href="/">首页</a></li>
+                        {% endif%}
+                        {% for category in category %}
+                            {% if category2==category.id%}
+                            <li class="nav-current"><a href="/?category={{category.id}}">{{category.name}}</a></li>
+                            {% else %}
+                            <li><a href="/?category={{category.id}}">{{category.name}}</a></li>
+                            {% endif%}
+                        {% endfor %}  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- end navigation -->
+
+
+<!-- start site's main content area -->
+<section class="content-wrap" style="margin-bottom:30px">
+    <div class="container">
+        <div class="row">
+
+            {% block main %}{% endblock %}
+            <aside class="col-md-4 sidebar">
+                <!-- start widget -->
+                <!-- end widget -->
+                <!-- start tag cloud widget -->
+                {% if userInfo._id == null %}
+                <!--注册-->
+                <div class="widget register">
+                    <h4 class="title">注册</h4>
+                    <div class="content community">
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form" method="POST" id="myform" action="/register">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">姓名</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control js-name" name="name" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">密码</label>
+    
+                                    <div class="col-md-8">
+                                        <input type="password" class="form-control" name="password">
+                                        <span class="help-block">
+                                            <strong></strong>
+                                        </span>
+    
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">重复密码</label>
+                                    <div class="col-md-8">
+                                        <input type="password" class="form-control" name="repassword">
+                                        <span class="help-block">
+                                            <strong></strong>
+                                        </span>
+    
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <a class="btn btn-default btn-register" href="javascript:;">
+                                            注册
+                                        </a>
+                                    </div>
+                                </div>
+                                <p style="text-align:right">已有账号，请<a href="javascript:;" class="js-login">登录</a></p>
+                                <p class="display-info"></p>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end tag cloud widget -->
+                <!--登录-->
+                <div class="widget login">
+                    <h4 class="title">登录</h4>
+                    <div class="content community">
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form" method="POST" id="myform" action="/register">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">姓名</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control js-name" name="name" value="">
+                                        <span class="help-block">
+                                            <strong></strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">密码</label>
+    
+                                    <div class="col-md-8">
+                                        <input type="password" class="form-control" name="password">
+                                        <span class="help-block">
+                                            <strong></strong>
+                                        </span>
+    
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <a class="btn btn-default btn-login" href="javascript:;">
+                                            登录
+                                        </a>
+                                    </div>
+                                </div>
+                                <p style="text-align:right">还没有账号，请<a href="javascript:;" class="js-register">注册</a></p>
+                                <p class="display-info"></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <!--用户信息-->
+                <div class="widget userInfo">
+                    <h4 class="title">个人中心</h4>
+                    <div class="content">
+                        <p class='username' style="font-size:30px;line-height:40px">{{userInfo.username}}</p>
+                        {% if userInfo.isAdmin %}
+                        <p class="info">你好管理员  <a href="/admin">后台管理</a></p>
+                        {% else %}
+                        <p class="info">欢迎光临我的博客</p>
+                        {% endif %}
+                        <a class="btn btn-default btn-exit" href="javascript:;">
+                            退出登录
+                        </a>
+
+                    </div>
+                </div>
+                {% endif %}
+                <!--社区-->
+                <div class="widget">
+                    <h4 class="title">社区</h4>
+
+                    <div class="content community">
+                        <p>技术交流QQ:798077009</p>
+
+                    </div>
+                </div>
+                <!---->
+            </aside>
+
+        </div>
+    </div>
+</section>
+
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>Copyright &copy; <a href="http://www.lveven.com/">lveven.com</a></span> |
+                <span><a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备14030074号-2</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+<!-- JavaScripts -->
+<script src="/public/js/jquery.min.js"></script>
+<script src="/public/js/bootstrap.min.js"></script>
+<script src="/public/js/index.js"></script>
+<link href="/public/css/ui-dialog.css" rel="stylesheet"/>
+<script src="/public/js/dialog-min.js"></script>
+
+<link href="/public/css/base.css" rel="stylesheet"/>
+<script src="/public/js/base.js"></script>
+
+<script src="/public/js/jquery.fitvids.min.js"></script>
+
+<link rel="stylesheet" href="/public/css/monokai.css">
+<script src="/public/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

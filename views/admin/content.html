@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+    <!-- 导航 -->
+    <ol class="breadcrumb">
+        <li><a href="/admin/">后台管理</a></li>
+        <li class="active">文章列表</li>
+    </ol>
+    <div class="container">
+        
+        <!-- 用户列表显示 -->
+        <table class="table table-hover">
+            <caption>文章列表</caption>
+            <thead>
+                <tr>
+                    <th>文章ID</th>
+                    <th>文章分类</th>
+                    <th>文章标题</th>
+                    <th>作者</th>
+                    <th>发布时间</th>
+                    <th>阅读量</th>
+                    <!-- <th>文章简介</th>
+                    <th>文章内容</th> -->
+                    <th colspan='2'>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 循环输出用户列表 -->
+                {% for content in content %}
+                <tr>
+                    <td>{{content._id.toString()}}</td>
+                    <td>{{content.category.name}}</td>
+                    <td>{{content.title}}</td>
+                    <td>{{content.user.username}}</td>
+                    <td>{{content.addTime|date('Y/m/d h:i:s',-8*60)}}</td>
+                    <td>{{content.views}}</td>
+                    <td><a href="/admin/content/edit?id={{content._id.toString()}}">修改</a></td>
+                    <td><a href="/admin/content/delete?id={{content._id.toString()}}">删除</a></td>
+                </tr>
+                {% endfor %}   
+            </tbody>
+        </table>
+        <!-- <div><a href="/admin/content/add" class='btn btn-default'>添加分类</a></div> -->
+        <!-- 分页显示 -->
+        <ul class="pager">
+            <li class="previous"><a href="/admin/content?page={{lastPage}}">&larr; 上一页</a></li>
+            <li>共{{pages}}页 {{count}}条数据 每页显示{{limit}}条 当前第{{page}}页 </li>
+            <li class="next"><a href="/admin/content?page={{nextPage}}">下一页 &rarr;</a></li>
+        </ul>
+    </div>
+{% endblock %}

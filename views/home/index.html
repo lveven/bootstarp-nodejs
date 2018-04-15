@@ -1,0 +1,55 @@
+﻿<!--引入后台页面模板-->
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+<main class="col-md-8 main-content">
+{% for content in content %}
+    <article class="post">
+        <div class="post-head">
+            <h2 class="post-title">
+                <a href="/">{{content.title}}</a>
+            </h2>
+            <div class="post-meta">
+                <span class="author">作者：{{content.user.username}}</span>
+                <time class="post-date" datetime="{{content.addTime|date('Y/m/d h:i:s',-8*60)}}"
+                        title="{{content.addTime|date('Y/m/d h:i:s',-8*60)}}">
+                    <p>时间：{{content.addTime|date('Y/m/d h:i:s',-8*60)}}</p>
+                </time>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>{{content.description}}</p>
+        </div>
+        <div class="post-permalink">
+            <span>阅读:{{content.views}}</span>
+            <span style="margin-left:10px">评论:{{content.count}}</span>
+            <a href="/detail?contentId={{content.id}}" class="btn btn-default pull-right">阅读全文</a>
+        </div>
+    </article>
+{% endfor %}        
+    <!-- 分页显示 -->
+    <ul class="pager">
+        <li class="previous">
+            {%if page<=1%}
+            <span>&larr; 没有上一页了</span>
+            {%else%}
+            <a href="/?category={{category2}}&page={{lastPage}}">&larr; 上一页</a>
+            {%endif%}
+        </li>
+        <li>
+            {%if pages>0%}
+            {{page}}/{{pages}}
+            {%else%}
+            当前分类下没有文章
+            {%endif%}
+        </li>
+        <li class="next">
+            {%if page>=pages%}
+            <span>&larr; 没有下一页了</span>
+            {%else%}
+            <a href="/?category={{category2}}&page={{nextPage}}">下一页 &rarr;</a>
+            {%endif%}
+        </li>
+    </ul>
+</main>
+{% endblock %}

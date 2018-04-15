@@ -1,0 +1,41 @@
+﻿<!--引入后台页面模板-->
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+<main class="col-md-8 main-content">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {%if type == 'success'%}
+                    提示信息
+                {%else%}
+                    错误信息
+                {%endif%}
+            </h3>
+        </div>
+        <div class="panel-body">
+            {{message}}
+            <center><b style="color:red" id="time">{{time}}</b>s 后自动跳转</center>
+        </div>
+        <div class="panel-footer">
+            {% if url %}
+                <a href="{{url}}" id="target" url="{{url}}" time="{{time}}">点击这里跳转</a>
+            {% else %}
+                <a href="javascript:window.history.back();" url="{{url}}" time="{{time}}">返回上一步</a>
+            {% endif %}
+        </div>
+    </div>
+</main>
+<script>
+    var url = document.getElementById("target").getAttribute('url')
+    var t = document.getElementById("target").getAttribute('time')
+    setInterval("refer()",1000); 
+    function refer(){ 
+        if(t==0){ 
+            window.location.href=url
+        } 
+        document.getElementById('time').innerHTML=""+t; 
+        t--;  
+    } 
+</script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+    <!-- 导航 -->
+    <ol class="breadcrumb">
+        <li><a href="/admin/">后台管理</a></li>
+        <li class="active">用户列表</li>
+    </ol>
+    <div class="container">
+        
+        <!-- 用户列表显示 -->
+        <table class="table table-hover">
+            <caption>用户列表</caption>
+            <thead>
+                <tr>
+                    <th>用户ID</th>
+                    <th>姓名</th>
+                    <th>密码</th>
+                    <th>是否管理员</th>
+                    <th colspan='2'>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 循环输出用户列表 -->
+                {% for user in users %}
+                <tr>
+                    <td>{{user._id.toString()}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{% if user.isAdmin %}是{% endif %}</td>
+                    <td><a href="/admin/user_edit?id={{user._id.toString()}}">修改</a></td>
+                    <td><a href="/admin/user_del?id={{user._id.toString()}}">删除</a></td>
+                </tr>
+                {% endfor %}   
+            </tbody>
+        </table>
+        <div><a href="/admin/user_add" class='btn btn-default'>添加用户</a></div>
+        <!-- 分页显示 -->
+        <ul class="pager">
+            <li class="previous"><a href="/admin/user?page={{lastPage}}">&larr; 上一页</a></li>
+            <li>共{{pages}}页 {{count}}条数据 每页显示{{limit}}条 当前第{{page}}页 </li>
+            <li class="next"><a href="/admin/user?page={{nextPage}}">下一页 &rarr;</a></li>
+        </ul>
+    </div>
+{% endblock %}

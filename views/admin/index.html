@@ -1,0 +1,9 @@
+<!--引入后台页面模板-->
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+<div class="container">
+    <h1>hello，{{userInfo.username}}</h1>
+    <p>欢迎进入博客后台管理页面!!!</p>
+</div>
+{% endblock %}

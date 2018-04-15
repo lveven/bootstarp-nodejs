@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+    <!-- 导航 -->
+    <ol class="breadcrumb">
+        <li><a href="/admin/">后台管理</a></li>
+        <li class="active">添加编辑</li>
+    </ol>
+    <div class="container">
+        <form role="form" method='post'>
+            <div class="form-group">
+                <label for="name">分类编辑——{{category.name}}</label>
+                <input type="text" value='{{category.name}}' class="form-control" id="name" name='name' placeholder="请输入名称">
+            </div>
+            <button type="submit" class="btn btn-default">修改</button>
+        </form>
+    </div>
+{% endblock %}

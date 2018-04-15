@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+    <!-- 导航 -->
+    <ol class="breadcrumb">
+        <li><a href="/admin/">后台管理</a></li>
+        <li class="active">分类列表</li>
+    </ol>
+    <div class="container">
+        
+        <!-- 用户列表显示 -->
+        <table class="table table-hover">
+            <caption>分类列表</caption>
+            <thead>
+                <tr>
+                    <th>分类ID</th>
+                    <th>分类名称</th>
+                    <th colspan='2'>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 循环输出用户列表 -->
+                {% for category in category %}
+                <tr>
+                    <td>{{category._id.toString()}}</td>
+                    <td>{{category.name}}</td>
+                    <td><a href="/admin/category/edit?id={{category._id.toString()}}">修改</a></td>
+                    <td><a href="/admin/category/delete?id={{category._id.toString()}}">删除</a></td>
+                </tr>
+                {% endfor %}   
+            </tbody>
+        </table>
+        <div><a href="/admin/category/add" class='btn btn-default'>添加分类</a></div>
+        <!-- 分页显示 -->
+        <ul class="pager">
+            <li class="previous"><a href="/admin/category?page={{lastPage}}">&larr; 上一页</a></li>
+            <li>共{{pages}}页 {{count}}条数据 每页显示{{limit}}条 当前第{{page}}页 </li>
+            <li class="next"><a href="/admin/category?page={{nextPage}}">下一页 &rarr;</a></li>
+        </ul>
+    </div>
+{% endblock %}

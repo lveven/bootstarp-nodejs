@@ -1,0 +1,51 @@
+﻿<!--引入后台页面模板-->
+{% extends 'layout.html' %}
+<!--编写自身页面的内容-->
+{% block main %}
+<main class="col-md-8 main-content">
+    <article class="post">
+
+        <div class="post-head">
+            <h1 class="post-title">{{content.title}}</h1>
+
+            <div class="post-meta">
+                <span class="author">作者:{{content.user.username}}</span>
+                <time class="post-date">
+                    <span>发布时间:{{content.addTime|date('Y/m/d h:i:s',-8*60)}}</span>
+                </time>
+                <span>阅读:{{content.views}}</span>
+                <span>评论:{{count}}</span>
+            </div>
+        </div>
+        <div class="post-content">
+            {{content.content|raw}}
+        </div>
+            
+    </article>
+
+
+    <!-- 评论 -->
+    <div class="js-comment-content" style="background:#fff;padding:15px 20px">
+        <h4>评论</h4>
+        <form action="/comment" method="post">
+            <input type="hidden" name='contentId' value="{{content._id.toString()}}" />
+            <textarea class="" name="statusvalue" id="statusvalue" placeholder="欢迎吐槽" style="width:100%;font-size: 14px;line-height: 1.42857143; color: #555;background-color:#eee; border: 1px solid #ccc;border-radius: 4px;">
+           
+            </textarea>
+            <button type="submit" class="btn btn-default">提交</button>
+        </form>
+        <h4>评论列表</h4>
+
+        {% for comment in comment %}
+        <div class="comment-list" style="display:inline-block;margin:10px 0px;border-bottom:1px solid #ccc" id="comment-list">
+            <p>{{comment.statusvalue}}</p>
+            <span class="author">用户名:{{comment.user.username}}</span>
+            <time class="post-date">
+                <span>评论时间:{{comment.addTime|date('Y/m/d h:i:s',-8*60)}}</span>
+            </time>
+        </div>
+        <br/>
+        {% endfor %}   
+    </div>
+</main>
+{% endblock %}
